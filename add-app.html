@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add App — LPT Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #fafafa;
+    --ink: #0a0a0f;
+    --ink-soft: #8a8f98;
+    --line: #e4e4e7;
+    --accent: #2e5eff;
+    --accent-soft: rgba(46,94,255,0.07);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    justify-content:center;
+    padding: 60px 20px 80px;
+  }
+  .page{ width:100%; max-width:520px; }
+
+  a.back{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    text-decoration:none;
+    display:inline-block;
+    margin-bottom: 28px;
+  }
+  a.back:hover{ color:var(--accent); }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--accent);
+    margin:0 0 10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{ content:""; width:6px;height:6px;background:var(--accent);border-radius:50%; }
+
+  h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: clamp(26px, 5vw, 32px);
+    font-weight:700;
+    letter-spacing:-0.01em;
+    margin:0 0 8px;
+  }
+  .lede{
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    margin: 0 0 36px;
+  }
+
+  form{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:22px;
+  }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+  }
+  .field-hint{
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin-top:2px;
+  }
+  .row-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+  input[type=text], input[type=url], select{
+    font-family:'Inter', sans-serif;
+    font-size:14px;
+    color:var(--ink);
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:10px 12px;
+    outline:none;
+    transition: border-color 0.15s ease;
+    width:100%;
+  }
+  input:focus, select:focus{ border-color: var(--accent); }
+  select{ appearance:none; background-image:none; cursor:pointer; }
+
+  .swatches{ display:flex; gap:8px; flex-wrap:wrap; }
+  .swatch{
+    width:30px; height:30px;
+    border-radius:8px;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .swatch.selected{ border-color: var(--ink); transform: scale(1.08); }
+
+  .preview-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--ink-soft);
+    margin: 34px 0 12px 4px;
+  }
+
+  /* live item preview, matches home-screen.html item styling */
+  .item-preview{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .item-preview .mark{
+    width:34px; height:34px; border-radius:9px;
+    flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:13px; color:#fff;
+    overflow:hidden;
+  }
+  .item-preview .text{ flex:1; min-width:0; }
+  .item-preview .name{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:14.5px; margin-bottom:2px; }
+  .item-preview .desc{ font-size:12px; color:var(--ink-soft); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .item-preview .status{
+    font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--ink-soft);
+    border:1px solid var(--line); padding:3px 8px; border-radius:20px; flex-shrink:0; white-space:nowrap;
+  }
+
+  .output-wrap{ margin-top:14px; position:relative; }
+  textarea{
+    width:100%;
+    min-height:220px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    line-height:1.6;
+    color:var(--ink);
+    background:#0f1117;
+    color:#d7dae2;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+    resize:vertical;
+  }
+  .copy-btn{
+    all:unset;
+    box-sizing:border-box;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:#fff;
+    background: var(--accent);
+    padding:10px 16px;
+    border-radius:9px;
+    cursor:pointer;
+    margin-top:12px;
+    transition: opacity 0.15s ease;
+  }
+  .copy-btn:hover{ opacity:0.88; }
+  .copy-btn:active{ opacity:0.7; }
+  .copy-status{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color: var(--accent);
+    margin-left:10px;
+  }
+
+  .instructions{
+    margin-top: 40px;
+    border-top:1px solid var(--line);
+    padding-top:24px;
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.7;
+  }
+  .instructions strong{ color:var(--ink); }
+  .instructions ol{ padding-left:20px; margin:10px 0 0; }
+  .instructions li{ margin-bottom:6px; }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <a class="back" href="home-screen.html">← back to site</a>
+
+    <p class="eyebrow">Internal tool</p>
+    <h1>Add a new app</h1>
+    <p class="lede">Fill this in, then copy the generated block at the bottom into <code>data.json</code>. This page never saves or sends anything anywhere — it just formats text for you.</p>
+
+    <form onsubmit="return false;">
+
+      <div class="field">
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="e.g. Flexle">
+      </div>
+
+      <div class="field">
+        <label for="subtitle">Subtitle (one short line)</label>
+        <input type="text" id="subtitle" placeholder="e.g. A daily word puzzle for iOS">
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category">
+            <option>iOS Games</option>
+            <option>macOS Apps</option>
+            <option>Cross-Platform</option>
+            <option>Safari Extensions</option>
+            <option value="__custom">+ New category…</option>
+          </select>
+        </div>
+        <div class="field" id="customCategoryField" style="display:none;">
+          <label for="customCategory">New category name</label>
+          <input type="text" id="customCategory" placeholder="e.g. Windows Apps">
+        </div>
+        <div class="field">
+          <label for="status">Status label</label>
+          <input type="text" id="status" placeholder="e.g. ios, beta, macos">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="logo">Logo filename</label>
+        <input type="text" id="logo" placeholder="flexle.png — leave blank to use initials instead">
+        <div class="field-hint">Save the logo image in the Logos folder, then just type its filename here — no need to include the folder path. Leave blank to use the 2-letter initials tile below instead.</div>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="mark">2-letter mark (fallback if no logo)</label>
+          <input type="text" id="mark" maxlength="2" placeholder="e.g. Fl">
+        </div>
+        <div class="field">
+          <label>Mark color (fallback if no logo)</label>
+          <div class="swatches" id="swatches"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="link">App / extension link</label>
+        <input type="url" id="link" placeholder="https://apps.apple.com/...">
+      </div>
+
+      <div class="field">
+        <label for="linkLabel">Link button text</label>
+        <input type="text" id="linkLabel" placeholder="e.g. Open on App Store">
+      </div>
+
+      <div class="field">
+        <label for="privacyLink">Privacy policy filename</label>
+        <input type="text" id="privacyLink" placeholder="flexle-privacy-policy.pdf">
+        <div class="field-hint">Save this app's bespoke privacy policy PDF in the Privacy Policies folder, then just type its filename here — no need to include the folder path.</div>
+      </div>
+
+    </form>
+
+    <div class="preview-label">Live preview</div>
+    <div class="item-preview">
+      <span class="mark" id="pv-mark" style="background:#2e5eff;">
+        <img id="pv-mark-img" style="display:none; width:100%; height:100%; object-fit:cover;" alt="">
+        <span id="pv-mark-text">--</span>
+      </span>
+      <span class="text">
+        <div class="name" id="pv-name">Untitled</div>
+        <div class="desc" id="pv-desc">One short line describing it</div>
+      </span>
+      <span class="status" id="pv-status"></span>
+    </div>
+
+    <div class="preview-label">Generated entry — copy this into data.json</div>
+    <div class="output-wrap">
+      <textarea id="output" readonly></textarea>
+      <button class="copy-btn" id="copyBtn" type="button">Copy to clipboard</button>
+      <span class="copy-status" id="copyStatus"></span>
+    </div>
+
+    <div class="instructions">
+      <strong>Folder structure this site expects:</strong>
+      <p style="margin:8px 0 0;">
+        <code>home-screen.html</code>, <code>data.json</code>, <code>contact.html</code>, <code>privacy-policies.html</code>, and <code>add-app.html</code> sit at the top level, alongside two subfolders:
+      </p>
+      <ul style="padding-left:20px; margin:8px 0 0;">
+        <li><code>Logos/</code> — app and extension logo images</li>
+        <li><code>Privacy Policies/</code> — privacy policy PDFs</li>
+      </ul>
+
+      <strong style="display:block; margin-top:24px;">How to use this with data.json:</strong>
+      <ol>
+        <li>Fill in the fields above — the box below updates as you type.</li>
+        <li>Click <strong>Copy to clipboard</strong>.</li>
+        <li>Open <code>data.json</code> in any text editor.</li>
+        <li>Find the closing <code>]</code> at the very end of the file. Just before it, after the last <code>}</code> of the previous entry, add a comma <code>,</code> — then paste your new block on its own line before the final <code>]</code>.</li>
+        <li>Save the file and re-upload it (or push it) alongside your site. The new app will appear automatically, grouped under its category.</li>
+      </ol>
+
+      <strong style="display:block; margin-top:24px;">About the logo field:</strong>
+      <p style="margin:8px 0 0;">Save the app's logo image into the <code>Logos</code> folder, then just type the filename into the Logo field above (e.g. <code>flexle.png</code> — no need to include "Logos/", it's added automatically). Leave it blank to use the 2-letter initials tile instead — that fallback also applies automatically if a logo file is ever missing or renamed.</p>
+
+      <strong style="display:block; margin-top:24px;">About the privacy policy field:</strong>
+      <p style="margin:8px 0 0;">Each app has its own bespoke privacy policy — you create and upload the PDF for it yourself. Once you've saved that PDF into the <code>Privacy Policies</code> folder, just type its filename into the field above (e.g. <code>flexle-privacy-policy.pdf</code> — no need to include "Privacy Policies/", it's added automatically).</p>
+    </div>
+  </div>
+
+<script>
+  const COLORS = ["#2e5eff", "#ff6b5b", "#14b8a6", "#f0a527", "#a855f7", "#0a0a0f"];
+  let selectedColor = COLORS[0];
+
+  const swatchesEl = document.getElementById('swatches');
+  COLORS.forEach(function(c, i){
+    const s = document.createElement('div');
+    s.className = 'swatch' + (i === 0 ? ' selected' : '');
+    s.style.background = c;
+    s.dataset.color = c;
+    s.addEventListener('click', function(){
+      selectedColor = c;
+      document.querySelectorAll('.swatch').forEach(function(el){ el.classList.remove('selected'); });
+      s.classList.add('selected');
+      update();
+    });
+    swatchesEl.appendChild(s);
+  });
+
+  const els = {
+    title: document.getElementById('title'),
+    subtitle: document.getElementById('subtitle'),
+    category: document.getElementById('category'),
+    customCategory: document.getElementById('customCategory'),
+    customCategoryField: document.getElementById('customCategoryField'),
+    status: document.getElementById('status'),
+    logo: document.getElementById('logo'),
+    mark: document.getElementById('mark'),
+    link: document.getElementById('link'),
+    linkLabel: document.getElementById('linkLabel'),
+    privacyLink: document.getElementById('privacyLink'),
+  };
+
+  els.category.addEventListener('change', function(){
+    els.customCategoryField.style.display = (els.category.value === '__custom') ? 'flex' : 'none';
+    update();
+  });
+
+  function jsonEscape(str){
+    return String(str || "").replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+  }
+
+  function currentCategory(){
+    return els.category.value === '__custom'
+      ? (els.customCategory.value.trim() || 'New Category')
+      : els.category.value;
+  }
+
+  function update(){
+    const title = els.title.value.trim() || "Untitled";
+    const subtitle = els.subtitle.value.trim() || "One short line describing it";
+    const category = currentCategory();
+    const status = els.status.value.trim();
+    const logoFilename = els.logo.value.trim();
+    const logo = logoFilename ? "Logos/" + logoFilename : "";
+    const logoEncoded = logo.replace(/ /g, '%20');
+    const mark = (els.mark.value.trim() || title.slice(0,2)).slice(0,2);
+    const link = els.link.value.trim() || "#";
+    const linkLabel = els.linkLabel.value.trim() || "Open";
+    const privacyFilename = els.privacyLink.value.trim();
+    const privacyLink = (privacyFilename ? "Privacy Policies/" + privacyFilename : "").replace(/ /g, '%20');
+
+    // live preview
+    const pvMark = document.getElementById('pv-mark');
+    const pvMarkImg = document.getElementById('pv-mark-img');
+    const pvMarkText = document.getElementById('pv-mark-text');
+    if(logo){
+      pvMarkImg.src = logoEncoded;
+      pvMarkImg.style.display = 'block';
+      pvMarkText.style.display = 'none';
+      pvMark.style.background = '#fff';
+    } else {
+      pvMarkImg.style.display = 'none';
+      pvMarkText.style.display = 'block';
+      pvMarkText.textContent = mark || "--";
+      pvMark.style.background = selectedColor;
+    }
+    document.getElementById('pv-name').textContent = title;
+    document.getElementById('pv-desc').textContent = subtitle;
+    document.getElementById('pv-status').textContent = status;
+
+    const block =
+`  {
+    "title": "${jsonEscape(title)}",
+    "subtitle": "${jsonEscape(subtitle)}",
+    "category": "${jsonEscape(category)}",
+    "mark": "${jsonEscape(mark)}",
+    "logo": "${jsonEscape(logoEncoded)}",
+    "color": "${jsonEscape(selectedColor)}",
+    "status": "${jsonEscape(status)}",
+    "link": "${jsonEscape(link)}",
+    "linkLabel": "${jsonEscape(linkLabel)}",
+    "privacyLink": "${jsonEscape(privacyLink)}"
+  },`;
+
+    document.getElementById('output').value = block;
+  }
+
+  Object.values(els).forEach(function(el){
+    if(!el || el.tagName === undefined) return;
+    el.addEventListener('input', update);
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    const ta = document.getElementById('output');
+    ta.select();
+    navigator.clipboard.writeText(ta.value).then(function(){
+      const status = document.getElementById('copyStatus');
+      status.textContent = 'Copied!';
+      setTimeout(function(){ status.textContent = ''; }, 2000);
+    }).catch(function(){
+      document.execCommand('copy');
+    });
+  });
+
+  document.getElementById('pv-mark-img').addEventListener('error', function(){
+    if(els.logo.value.trim()){
+      document.getElementById('pv-mark-img').style.display = 'none';
+      document.getElementById('pv-mark-text').style.display = 'block';
+      document.getElementById('pv-mark').style.background = selectedColor;
+    }
+  });
+
+  update();
+</script>
+
+<!--
+  This page is a local formatting tool only — nothing here is saved or sent anywhere.
+  It just builds a correctly-formatted JSON object for you to paste into data.json.
+  You don't need to keep this file online if you don't want people finding it, but
+  there's nothing sensitive in it either way since it holds no real data itself.
+-->
+</body>
+</html>

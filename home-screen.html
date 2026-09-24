@@ -298,6 +298,11 @@
     color:var(--ink-soft);
   }
   .sub-link:hover .arrow, .sub-link:focus-visible .arrow{ color: var(--accent); }
+  /* Apps without a store link yet (e.g. in review) — shown but not clickable */
+  .sub-link.sub-link-disabled{ color:var(--ink-soft); cursor:default; }
+  .sub-link.sub-link-disabled:hover{ background:none; color:var(--ink-soft); padding-left:8px; }
+  .sub-link.sub-link-disabled:hover .dot{ background:var(--ink-soft); }
+  .sub-link.sub-link-disabled:hover .arrow{ color:var(--ink-soft); }
 
   /* Docs list, more understated */
   .doc-btn{
@@ -460,7 +465,7 @@
   }
   setupThemeToggle();
 
-  const CATEGORY_ORDER = ["iOS Games", "macOS Apps", "Cross-Platform", "Safari Extensions"];
+  const CATEGORY_ORDER = ["iOS Games", "iOS Apps", "macOS Apps", "Cross-Platform", "Safari Extensions"];
 
   function escapeHtml(str){
     return String(str)
@@ -498,10 +503,15 @@
         </button>
         <div class="item-panel"><div class="item-panel-inner">
           <div class="sub-links">
-            <a class="sub-link" href="${link}" target="_blank" rel="noopener">
+            ${app.link
+              ? `<a class="sub-link" href="${link}" target="_blank" rel="noopener">
               <span class="label"><span class="dot"></span>${linkLabel}</span>
               <span class="arrow">→</span>
-            </a>
+            </a>`
+              : `<span class="sub-link sub-link-disabled" aria-disabled="true">
+              <span class="label"><span class="dot"></span>${linkLabel}</span>
+              <span class="arrow">soon</span>
+            </span>`}
             <a class="sub-link" href="${privacyLink}">
               <span class="label"><span class="dot"></span>Privacy Policy</span>
               <span class="arrow">→</span>

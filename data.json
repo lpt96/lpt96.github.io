@@ -12,6 +12,18 @@
     "privacyLink": "Privacy%20Policies/Flexle-Privacy-Policy.pdf"
   },
   {
+    "title": "Credits",
+    "subtitle": "Your film & TV journal",
+    "category": "iOS Apps",
+    "mark": "Cr",
+    "logo": "Logos/credits_logo.png",
+    "color": "#2e5eff",
+    "status": "iOS",
+    "link": "",
+    "linkLabel": "Coming soon to the App Store",
+    "privacyLink": "Privacy%20Policies/Credits-Privacy-Policy.pdf"
+  },
+  {
     "title": "Fill Window for Video",
     "subtitle": "Expand videos to fill window",
     "category": "Safari Extensions",
