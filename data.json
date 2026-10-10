@@ -12,16 +12,16 @@
     "privacyLink": "Privacy%20Policies/Flexle-Privacy-Policy.pdf"
   },
   {
-    "title": "Credits",
-    "subtitle": "Your film & TV journal",
-    "category": "iOS Apps",
-    "mark": "Cr",
-    "logo": "Logos/credits_logo.png",
+    "title": "MyIPTV",
+    "subtitle": "IPTV player for Apple TV, iPhone & iPad",
+    "category": "Cross-Platform",
+    "mark": "TV",
+    "logo": "Logos/myiptv_logo.png",
     "color": "#2e5eff",
-    "status": "iOS",
+    "status": "tvOS · iOS",
     "link": "",
     "linkLabel": "Coming soon to the App Store",
-    "privacyLink": "Privacy%20Policies/Credits-Privacy-Policy.pdf"
+    "privacyLink": "Privacy%20Policies/MyIPTV-Privacy-Policy.pdf"
   },
   {
     "title": "Fill Window for Video",
