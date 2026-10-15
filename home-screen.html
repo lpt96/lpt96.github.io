@@ -477,9 +477,17 @@
     const mark = escapeHtml((app.mark || "??").slice(0,2));
     const color = escapeHtml(app.color || "#8a8f98");
     const logo = escapeHtml(app.logo || "");
-    const link = escapeHtml(app.link || "#");
+    const link = escapeHtml(app.link || "");
     const linkLabel = escapeHtml(app.linkLabel || "Open");
     const privacyLink = escapeHtml(app.privacyLink || "Privacy%20Policies/privacy-policy.pdf");
+
+    // Apps not live yet (no link in data.json) skip the store link row
+    const linkRowHTML = link
+      ? `<a class="sub-link" href="${link}" target="_blank" rel="noopener">
+              <span class="label"><span class="dot"></span>${linkLabel}</span>
+              <span class="arrow">→</span>
+            </a>`
+      : "";
 
     const markHTML = logo
       ? `<span class="mark mark-logo" data-fallback-mark="${mark}" data-fallback-color="${color}"><img src="${logo}" alt="" class="logo-img"></span>`
@@ -498,10 +506,7 @@
         </button>
         <div class="item-panel"><div class="item-panel-inner">
           <div class="sub-links">
-            <a class="sub-link" href="${link}" target="_blank" rel="noopener">
-              <span class="label"><span class="dot"></span>${linkLabel}</span>
-              <span class="arrow">→</span>
-            </a>
+            ${linkRowHTML}
             <a class="sub-link" href="${privacyLink}">
               <span class="label"><span class="dot"></span>Privacy Policy</span>
               <span class="arrow">→</span>

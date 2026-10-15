@@ -19,7 +19,7 @@
     "logo": "Logos/euvalis_logo.png",
     "color": "#14b8a6",
     "status": "ios",
-    "link": "PASTE_APP_STORE_LINK_HERE",
+    "link": "https://apps.apple.com/gb/app/euvalis-ai-calorie-tracker/id6817921572",
     "linkLabel": "Open in App Store",
     "privacyLink": "Privacy%20Policies/Euvalis-Privacy-Policy.pdf"
   },
@@ -34,5 +34,17 @@
     "link": "https://apps.apple.com/gb/app/fill-window-for-video/id6788161965?mt=12",
     "linkLabel": "Open in App Store",
     "privacyLink": "Privacy%20Policies/FillWindow-Privacy-Policy.pdf"
+  },
+  {
+    "title": "MyIPTV",
+    "subtitle": "A beautiful IPTV player for Apple platforms",
+    "category": "Cross-Platform",
+    "mark": "Ip",
+    "logo": "Logos/myiptv_logo.png",
+    "color": "#a855f7",
+    "status": "coming soon",
+    "link": "",
+    "linkLabel": "Open in App Store",
+    "privacyLink": "Privacy%20Policies/MyIPTV-Privacy-Policy.pdf"
   }
 ]
