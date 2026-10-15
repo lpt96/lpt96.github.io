@@ -298,11 +298,6 @@
     color:var(--ink-soft);
   }
   .sub-link:hover .arrow, .sub-link:focus-visible .arrow{ color: var(--accent); }
-  /* Apps without a store link yet (e.g. in review) — shown but not clickable */
-  .sub-link.sub-link-disabled{ color:var(--ink-soft); cursor:default; }
-  .sub-link.sub-link-disabled:hover{ background:none; color:var(--ink-soft); padding-left:8px; }
-  .sub-link.sub-link-disabled:hover .dot{ background:var(--ink-soft); }
-  .sub-link.sub-link-disabled:hover .arrow{ color:var(--ink-soft); }
 
   /* Docs list, more understated */
   .doc-btn{
@@ -408,7 +403,7 @@
       <div class="avatar">LPT</div>
       <p class="eyebrow">Independent apps &amp; extensions</p>
       <h1>LPT Studio</h1>
-      <p>Small, focused tools across iOS, macOS, and the browser. Tap an item to see its links.</p>
+      <p>Independently built software for iOS, macOS, and the browser — tap an app to see everything linked to it.</p>
     </div>
 
     <div id="app-groups"></div>
@@ -503,15 +498,10 @@
         </button>
         <div class="item-panel"><div class="item-panel-inner">
           <div class="sub-links">
-            ${app.link
-              ? `<a class="sub-link" href="${link}" target="_blank" rel="noopener">
+            <a class="sub-link" href="${link}" target="_blank" rel="noopener">
               <span class="label"><span class="dot"></span>${linkLabel}</span>
               <span class="arrow">→</span>
-            </a>`
-              : `<span class="sub-link sub-link-disabled" aria-disabled="true">
-              <span class="label"><span class="dot"></span>${linkLabel}</span>
-              <span class="arrow">soon</span>
-            </span>`}
+            </a>
             <a class="sub-link" href="${privacyLink}">
               <span class="label"><span class="dot"></span>Privacy Policy</span>
               <span class="arrow">→</span>

@@ -6,22 +6,22 @@
     "mark": "Fl",
     "logo": "Logos/flexle_logo.png",
     "color": "#2e5eff",
-    "status": "iOS",
+    "status": "ios",
     "link": "https://apps.apple.com/gb/app/flexle/id6780220355",
     "linkLabel": "Open in App Store",
     "privacyLink": "Privacy%20Policies/Flexle-Privacy-Policy.pdf"
   },
   {
-    "title": "MyIPTV",
-    "subtitle": "IPTV player for Apple TV, iPhone & iPad",
-    "category": "Cross-Platform",
-    "mark": "TV",
-    "logo": "Logos/myiptv_logo.png",
-    "color": "#2e5eff",
-    "status": "tvOS · iOS",
-    "link": "",
-    "linkLabel": "Coming soon to the App Store",
-    "privacyLink": "Privacy%20Policies/MyIPTV-Privacy-Policy.pdf"
+    "title": "Euvalis",
+    "subtitle": "AI-powered nutrition and meal planning",
+    "category": "iOS Apps",
+    "mark": "Eu",
+    "logo": "Logos/euvalis_logo.png",
+    "color": "#14b8a6",
+    "status": "ios",
+    "link": "PASTE_APP_STORE_LINK_HERE",
+    "linkLabel": "Open in App Store",
+    "privacyLink": "Privacy%20Policies/Euvalis-Privacy-Policy.pdf"
   },
   {
     "title": "Fill Window for Video",
@@ -34,17 +34,5 @@
     "link": "https://apps.apple.com/gb/app/fill-window-for-video/id6788161965?mt=12",
     "linkLabel": "Open in App Store",
     "privacyLink": "Privacy%20Policies/FillWindow-Privacy-Policy.pdf"
-  },
-  {
-    "title": "Squish Video",
-    "subtitle": "Video Compressor and Tools",
-    "category": "macOS Apps",
-    "mark": "Sq",
-    "logo": "Logos/squish_logo.png",
-    "color": "#2e5eff",
-    "status": "macOS",
-    "link": "https://apps.apple.com/gb/app/squish-video/id6782396588?mt=12",
-    "linkLabel": "Open in App Store",
-    "privacyLink": "Privacy%20Policies/Squish-Privacy-Policy.pdf"
   }
 ]
