@@ -46,5 +46,17 @@
     "link": "",
     "linkLabel": "Open in App Store",
     "privacyLink": "Privacy%20Policies/MyIPTV-Privacy-Policy.pdf"
+  },
+  {
+    "title": "Squish",
+    "subtitle": "Compress and convert media on your Mac",
+    "category": "macOS Apps",
+    "mark": "Sq",
+    "logo": "Logos/squish_logo.png",
+    "color": "#f0a527",
+    "status": "macOS",
+    "link": "https://apps.apple.com/gb/app/squish-video-compressor/id6782396588?mt=12\nSquish - Video Compressor",
+    "linkLabel": "Open in Mac App Store",
+    "privacyLink": "Privacy%20Policies/Squish-Privacy-Policy.pdf"
   }
 ]
