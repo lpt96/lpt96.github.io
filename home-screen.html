@@ -327,6 +327,62 @@
   }
   footer a{ color:var(--ink-soft); }
 
+  /* Studio / freelance card — accent-tinted so it reads as a "work with me" call to action */
+  .studio-card{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:34px;
+    padding:18px 20px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--accent-soft);
+    border:1px solid var(--accent);
+    border-radius:16px;
+    transition: transform 0.18s ease, background 0.25s ease;
+  }
+  .studio-card:hover, .studio-card:focus-visible{
+    transform: translateY(-2px);
+    outline:none;
+  }
+  .studio-card .studio-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--accent);
+    color:#fff;
+  }
+  .studio-card .studio-text{ flex:1; min-width:0; }
+  .studio-card .studio-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--accent);
+    margin-bottom:4px;
+  }
+  .studio-card .studio-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:15.5px;
+    margin-bottom:2px;
+  }
+  .studio-card .studio-sub{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.45;
+  }
+  .studio-card .studio-go{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--accent);
+    flex-shrink:0;
+  }
+
   /* Support / tip card — intentionally distinct from the light link items */
   .support-card{
     margin-top: 34px;
@@ -405,6 +461,18 @@
       <h1>LPT Studio</h1>
       <p>Independently built software for iOS, macOS, and the browser — tap an app to see everything linked to it.</p>
     </div>
+
+    <a class="studio-card" href="https://lpt-studio.co.uk" target="_blank" rel="noopener">
+      <span class="studio-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><line x1="3" y1="12" x2="21" y2="12"></line><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"></path></svg>
+      </span>
+      <span class="studio-text">
+        <div class="studio-eyebrow">Got an idea?</div>
+        <div class="studio-title">Let's build it together</div>
+        <div class="studio-sub">I take on freelance app and web projects — come say hi</div>
+      </span>
+      <span class="studio-go">→</span>
+    </a>
 
     <div id="app-groups"></div>
 
