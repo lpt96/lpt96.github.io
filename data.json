@@ -19,7 +19,7 @@
     "logo": "Logos/euvalis_logo.png",
     "color": "#14b8a6",
     "status": "ios",
-    "link": "https://apps.apple.com/gb/app/euvalis-ai-calorie-tracker/id6817921572",
+    "link": "PASTE_APP_STORE_LINK_HERE",
     "linkLabel": "Open in App Store",
     "privacyLink": "Privacy%20Policies/Euvalis-Privacy-Policy.pdf"
   },
@@ -36,14 +36,14 @@
     "privacyLink": "Privacy%20Policies/FillWindow-Privacy-Policy.pdf"
   },
   {
-    "title": "MyIPTV",
+    "title": "MyIPTV - Stream Player",
     "subtitle": "A beautiful IPTV player for Apple platforms",
     "category": "Cross-Platform",
     "mark": "Ip",
     "logo": "Logos/myiptv_logo.png",
     "color": "#a855f7",
-    "status": "coming soon",
-    "link": "",
+    "status": "ios",
+    "link": "https://apps.apple.com/gb/app/myiptv-stream-player/id6796110887",
     "linkLabel": "Open in App Store",
     "privacyLink": "Privacy%20Policies/MyIPTV-Privacy-Policy.pdf"
   },
@@ -55,8 +55,32 @@
     "logo": "Logos/squish_logo.png",
     "color": "#f0a527",
     "status": "macOS",
-    "link": "https://apps.apple.com/gb/app/squish-video-compressor/id6782396588?mt=12\nSquish - Video Compressor",
+    "link": "",
     "linkLabel": "Open in Mac App Store",
     "privacyLink": "Privacy%20Policies/Squish-Privacy-Policy.pdf"
+  },
+  {
+    "title": "Canister",
+    "subtitle": "A Jellyfin client for Apple TV, iPhone and iPad",
+    "category": "Cross-Platform",
+    "mark": "Ca",
+    "logo": "Logos/canister_logo.png",
+    "color": "#0ea5e9",
+    "status": "coming soon",
+    "link": "",
+    "linkLabel": "Open in App Store",
+    "privacyLink": "Privacy%20Policies/Canister-Privacy-Policy.pdf"
+  },
+  {
+    "title": "Volume+",
+    "subtitle": "Per-app volume mixer for your Mac",
+    "category": "macOS Apps",
+    "mark": "V+",
+    "logo": "Logos/volumeplus_logo.png",
+    "color": "#ef4444",
+    "status": "macOS",
+    "link": "https://lpt-studio.co.uk/downloads.html",
+    "linkLabel": "Download from LPT Studio",
+    "privacyLink": "Privacy%20Policies/VolumePlus-Privacy-Policy.pdf"
   }
 ]
